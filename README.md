@@ -11,3 +11,6 @@ install requirements
 
 run tests to see which tests pass
 `pytest -v`
+
+run the calculator
+`python calculator.py`
