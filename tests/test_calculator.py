@@ -15,3 +15,6 @@ def test_multiplication():
 
 def test_division():
     assert divide(6, 2) == 3
+
+def test_fail_addition():
+    assert add(2, 3) == 3
