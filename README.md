@@ -13,4 +13,4 @@ run tests to see which tests pass
 `pytest -v`
 
 run the calculator
-`python calculator.py`
+`python -m app.calculator`
