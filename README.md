@@ -1,16 +1,59 @@
 # calculator
 
-initialize venv
-`python -m venv venv`
+## Setup
 
-activate venv
-`source venv/bin/activate`
+**Initialize virtual environment:**
+```bash
+python -m venv venv
+```
 
-install requirements
-`pip install -r requirements.txt`
+**Activate virtual environment:**
+```bash
+source venv/bin/activate
+```
 
-run tests to see which tests pass
-`pytest -v`
+**Install requirements:**
+```bash
+pip install -r requirements.txt
+```
 
-run the calculator
-`python -m app.calculator`
+## Running Tests
+
+**Run all tests (including parameterized and expression tests):**
+```bash
+pytest -v
+```
+
+- Tests now cover various input scenarios for calculator operations and expression parsing.
+- Expression tests are located in `tests/test_calculator.py`.
+
+## Running the Calculator
+
+**Start the calculator app:**
+```bash
+python -m app.calculator
+```
+
+- The calculator now supports full expression parsing (e.g., `2 + 3 * 4`).
+- Logging is enabled for calculation steps and errors.
+- Input expressions are validated for correct format and operator usage.
+
+## Features
+
+- Supports addition, subtraction, multiplication, and division.
+- Handles operator precedence (multiplication/division before addition/subtraction).
+- Returns integer results when possible, otherwise float.
+- Logs calculation steps and errors for easier debugging.
+- Raises clear errors for invalid expressions (e.g., `2 ++ 3`).
+- Available commands: exit, undo, redo, history, help, clear, clear_history
+
+## Example Usage
+
+```
+Welcome to the calculator! Please enter your calculations. Enter 'exit' to quit.
+Calculation 1: 2 + 3 * 4
+Result: 14
+Calculation 2: 8 / 2 + 3
+Result: 7
+Calculation 3: exit
+```
