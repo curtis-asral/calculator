@@ -105,4 +105,5 @@ class CalculationFactory:
             return AbsoluteDifferenceCalculation(a, b)
         else:
             from app.exceptions import OperationError
+
             raise OperationError(operation, f"Unknown operation")  # pragma: no cover

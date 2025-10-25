@@ -18,6 +18,7 @@ import math
 
 import pytest
 
+
 @pytest.mark.parametrize(
     "cls,a,b,expected",
     [
@@ -32,7 +33,7 @@ import pytest
         (PercentCalculation, 50, 100, 50),
         (AbsoluteDifferenceCalculation, 5, 10, 5),
         (AbsoluteDifferenceCalculation, 10, 5, 5),
-    ]
+    ],
 )
 def test_calculation_classes(cls, a, b, expected):
     calc = cls(a, b)
@@ -42,19 +43,22 @@ def test_calculation_classes(cls, a, b, expected):
     else:
         assert result == expected
 
+
 @pytest.mark.parametrize(
     "cls,a,b,exception",
     [
         (DivideCalculation, 5, 0, OperationError),
-    ]
+    ],
 )
 def test_calculation_exceptions(cls, a, b, exception):
     with pytest.raises(exception):
         cls(a, b).get_result()
 
+
 def test_factory_add():
     calc = CalculationFactory.create("add", 1, 2)
     assert calc.get_result() == 3
+
 
 def test_factory_invalid():
     with pytest.raises(OperationError):

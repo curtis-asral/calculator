@@ -1,4 +1,3 @@
-
 from . import calculate_expression
 from app.memento import undo, redo, history, clear, clear_history
 import pandas as pd
@@ -13,7 +12,11 @@ if __name__ == "__main__":
     load_dotenv(override=True)
 
     # Print welcome message
-    print(Fore.YELLOW + Style.BRIGHT + "Welcome to the calculator! Please enter your calculations. Enter 'exit' to quit.")
+    print(
+        Fore.YELLOW
+        + Style.BRIGHT
+        + "Welcome to the calculator! Please enter your calculations. Enter 'exit' to quit."
+    )
 
     # Run the calculator
     calculations = 1
@@ -47,7 +50,11 @@ if __name__ == "__main__":
                 print(Fore.CYAN + f"{i+1}: {eq}")
             continue
         elif prompt.lower() == "help":
-            print(Fore.YELLOW + Style.BRIGHT + "Available commands: exit, undo, redo, history, help, clear, clear_history")
+            print(
+                Fore.YELLOW
+                + Style.BRIGHT
+                + "Available commands: exit, undo, redo, history, help, clear, clear_history"
+            )
             continue
         elif prompt.lower() == "clear":
             clear()

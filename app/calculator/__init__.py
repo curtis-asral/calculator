@@ -7,8 +7,8 @@ import re
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
-    filename='logs/calculator.log',
-    filemode='a'  # 'a' means append mode, so new logs will be added to existing file
+    filename="logs/calculator.log",
+    filemode="a",  # 'a' means append mode, so new logs will be added to existing file
 )
 
 
@@ -33,20 +33,20 @@ def calculate_expression(expression):
     expression = expression.replace(" ", "")
     logging.debug(f"Expression after whitespace removal: {expression}")
 
-
-
     # Special handling for unary sqrt, e.g., sqrt(16) or sqrt16
-    if expression.startswith('sqrt'):
+    if expression.startswith("sqrt"):
         # Accept sqrt16 or sqrt(16)
-        match = re.match(r'sqrt\(?([\d.]+)\)?', expression)
+        match = re.match(r"sqrt\(?([\d.]+)\)?", expression)
         if match:
             value = float(match.group(1))
-            calculation = CalculationFactory.create('root', value, 2)
+            calculation = CalculationFactory.create("root", value, 2)
             result = calculation.get_result()
             logging.info(f"Result: {result}")
             return int(result) if result == int(result) else result
     # Build regex for all operators, sorted by length descending to match multi-char ops first
-    op_regex = '|'.join(sorted(map(re.escape, symbol_dict.keys()), key=len, reverse=True))
+    op_regex = "|".join(
+        sorted(map(re.escape, symbol_dict.keys()), key=len, reverse=True)
+    )
     token_pattern = rf"\d+\.?\d*|{op_regex}"
     tokens = re.findall(token_pattern, expression)
     logging.debug(f"Parsed tokens: {tokens}")
@@ -54,13 +54,17 @@ def calculate_expression(expression):
     # Validate we have the right structure
     if len(tokens) < 3 or len(tokens) % 2 == 0:
         logging.error("Invalid expression format: wrong number of tokens")
-        raise ValidationError(expression, "Invalid expression format")  # pragma: no cover
+        raise ValidationError(
+            expression, "Invalid expression format"
+        )  # pragma: no cover
 
     # Check if parsed tokens match original expression length (catches ++)
     reconstructed = "".join(tokens)
     if reconstructed != expression:
         logging.error("Invalid expression format: token reconstruction mismatch")
-        raise ValidationError(expression, "Invalid expression format")  # pragma: no cover
+        raise ValidationError(
+            expression, "Invalid expression format"
+        )  # pragma: no cover
 
     # Validate and separate tokens into numbers and operators
     try:
@@ -77,8 +81,9 @@ def calculate_expression(expression):
         logging.debug(f"Numbers: {numbers}, Operators: {operators}")
     except (ValueError, IndexError) as e:
         logging.error(f"Exception during token validation: {e}")
-        raise ValidationError(expression, "Invalid expression format") from e  # pragma: no cover
-
+        raise ValidationError(
+            expression, "Invalid expression format"
+        ) from e  # pragma: no cover
 
     # Operator precedence: list of lists, highest precedence first
     precedence = [
@@ -92,15 +97,19 @@ def calculate_expression(expression):
         i = 0
         while i < len(operators):
             if operators[i] in ops:
-                logging.info(f"Performing {operators[i]} on {numbers[i]} and {numbers[i+1] if i+1 < len(numbers) else 'N/A'}")
+                logging.info(
+                    f"Performing {operators[i]} on {numbers[i]} and {numbers[i+1] if i+1 < len(numbers) else 'N/A'}"
+                )
                 op_key = symbol_dict[operators[i]]
                 # sqrt is unary, only uses numbers[i]
                 if operators[i] == "sqrt":
                     calculation = CalculationFactory.create(op_key, numbers[i], 2)
                     result = calculation.get_result()
-                    numbers = numbers[:i] + [result] + numbers[i+1:]
+                    numbers = numbers[:i] + [result] + numbers[i + 1 :]
                 else:
-                    calculation = CalculationFactory.create(op_key, numbers[i], numbers[i + 1])
+                    calculation = CalculationFactory.create(
+                        op_key, numbers[i], numbers[i + 1]
+                    )
                     result = calculation.get_result()
                     numbers = numbers[:i] + [result] + numbers[i + 2 :]
                 logging.info(f"Result: {result}")

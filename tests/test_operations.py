@@ -1,8 +1,19 @@
-
 import pytest
-from app.operation import add, subtract, multiply, divide, power, root, modulus, integer_divide, percent, absolute_difference
+from app.operation import (
+    add,
+    subtract,
+    multiply,
+    divide,
+    power,
+    root,
+    modulus,
+    integer_divide,
+    percent,
+    absolute_difference,
+)
 
 import math
+
 
 @pytest.mark.parametrize(
     "func,a,b,expected",
@@ -19,7 +30,7 @@ import math
         (percent, 50, 100, 50),
         (absolute_difference, 5, 10, 5),
         (absolute_difference, 10, 5, 5),
-    ]
+    ],
 )
 def test_operations_param(func, a, b, expected):
     result = func(a, b)
@@ -28,12 +39,13 @@ def test_operations_param(func, a, b, expected):
     else:
         assert result == expected
 
+
 @pytest.mark.parametrize(
     "func,a,b,exception",
     [
         (divide, 1, 0, ZeroDivisionError),
         (root, 16, 0, ZeroDivisionError),  # root(x, 0) raises ZeroDivisionError
-    ]
+    ],
 )
 def test_operations_exceptions(func, a, b, exception):
     with pytest.raises(exception):

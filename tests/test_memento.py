@@ -1,4 +1,3 @@
-
 import os
 import pandas as pd
 import pytest
@@ -6,7 +5,9 @@ import tempfile
 import pytest
 from app.memento import history, undo, redo, clear_history
 
-pytestmark = pytest.mark.skip(reason="Skip memento/history tests for coverage focus on main app code.")
+pytestmark = pytest.mark.skip(
+    reason="Skip memento/history tests for coverage focus on main app code."
+)
 
 
 @pytest.fixture
