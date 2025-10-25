@@ -17,6 +17,30 @@ def test_parentheses_like_behavior():
 
 def test_division_result():
     assert calculate_expression("8 / 2 + 3") == 7
+    
+
+def test_division_by_zero():
+    from app.exceptions import OperationError
+    with pytest.raises(OperationError):
+        calculate_expression("8 / 0")
+
+def test_power():
+    assert calculate_expression("2**3") == 8
+
+def test_root():
+    assert calculate_expression("sqrt(16)") == 4
+
+def test_modulus():
+    assert calculate_expression("7 % 3") == 1
+
+def test_integer_division():
+    assert calculate_expression("7 // 2") == 3
+
+def test_percent():
+    assert calculate_expression("100 % 5") == 0
+
+def test_absolute_difference():
+    assert calculate_expression("5 - 10") == -5  # subtraction, not abs diff
 
 
 def test_decimal_numbers():
@@ -24,5 +48,6 @@ def test_decimal_numbers():
 
 
 def test_invalid_expression():
-    with pytest.raises(ValueError):
+    from app.exceptions import ValidationError
+    with pytest.raises(ValidationError):
         calculate_expression("2 ++ 3")

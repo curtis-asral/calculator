@@ -1,0 +1,34 @@
+2025-10-24 21:10:31,851 [INFO] Received expression: 1+2
+2025-10-24 21:10:31,851 [INFO] Performing + on 1.0 and 2.0
+2025-10-24 21:10:31,851 [INFO] Result: 3.0
+2025-10-24 21:10:31,851 [INFO] Final result: 3.0
+2025-10-24 21:10:35,444 [INFO] Received expression: 4/87
+2025-10-24 21:10:35,444 [INFO] Performing / on 4.0 and 87.0
+2025-10-24 21:10:35,444 [INFO] Result: 0.04597701149425287
+2025-10-24 21:10:35,444 [INFO] Final result: 0.04597701149425287
+2025-10-24 21:10:39,841 [INFO] Received expression: 8//4
+2025-10-24 21:10:39,841 [INFO] Performing // on 8.0 and 4.0
+2025-10-24 21:10:39,841 [INFO] Result: 2
+2025-10-24 21:10:39,841 [INFO] Final result: 2
+2025-10-24 21:10:42,081 [INFO] Received expression: 6//3
+2025-10-24 21:10:42,081 [INFO] Performing // on 6.0 and 3.0
+2025-10-24 21:10:42,081 [INFO] Result: 2
+2025-10-24 21:10:42,081 [INFO] Final result: 2
+2025-10-24 21:10:44,260 [INFO] Received expression: 8//5
+2025-10-24 21:10:44,260 [INFO] Performing // on 8.0 and 5.0
+2025-10-24 21:10:44,260 [INFO] Result: 1
+2025-10-24 21:10:44,260 [INFO] Final result: 1
+2025-10-24 21:10:51,502 [INFO] Received expression: 13%8
+2025-10-24 21:10:51,502 [INFO] Performing % on 13.0 and 8.0
+2025-10-24 21:10:51,502 [INFO] Result: 5.0
+2025-10-24 21:10:51,502 [INFO] Final result: 5.0
+2025-10-24 21:10:57,520 [INFO] Received expression: 5%%10
+2025-10-24 21:10:57,520 [INFO] Performing %% on 5.0 and 10.0
+2025-10-24 21:10:57,520 [INFO] Result: 50.0
+2025-10-24 21:10:57,520 [INFO] Final result: 50.0
+2025-10-24 21:20:18,159 [INFO] Received expression: 2=5
+2025-10-24 21:20:18,159 [ERROR] Invalid expression format: wrong number of tokens
+2025-10-24 21:20:21,823 [INFO] Received expression: 2+65
+2025-10-24 21:20:21,823 [INFO] Performing + on 2.0 and 65.0
+2025-10-24 21:20:21,823 [INFO] Result: 67.0
+2025-10-24 21:20:21,823 [INFO] Final result: 67.0

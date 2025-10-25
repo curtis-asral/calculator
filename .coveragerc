@@ -1,0 +1,4 @@
+[run]
+omit =
+    app/calculator/__main__.py
+    app/memento/*

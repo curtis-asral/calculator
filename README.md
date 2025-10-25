@@ -21,7 +21,7 @@ pip install -r requirements.txt
 
 **Run all tests (including parameterized and expression tests):**
 ```bash
-pytest -v
+pytest --cov=app --cov-report=term-missing --cov-fail-under=90 -v
 ```
 
 - Tests now cover various input scenarios for calculator operations and expression parsing.
@@ -40,12 +40,23 @@ python -m app.calculator
 
 ## Features
 
-- Supports addition, subtraction, multiplication, and division.
-- Handles operator precedence (multiplication/division before addition/subtraction).
+
+- Supports addition, subtraction, multiplication, division, power, root, modulus, integer division, percent, and absolute difference operations.
+- Handles operator precedence (PEMDAS).
 - Returns integer results when possible, otherwise float.
-- Logs calculation steps and errors for easier debugging.
+- Logs calculation steps and errors for easier debugging (to `logs/calculator.log`).
 - Raises clear errors for invalid expressions (e.g., `2 ++ 3`).
 - Available commands: exit, undo, redo, history, help, clear, clear_history
+- Expression parser supports multi-operator and multi-digit expressions (e.g., `2 + 3 * 4 - 5 / 2`).
+- Custom exceptions for operation and validation errors.
+- Logging to file for all calculation steps and errors.
+- History is persisted to CSV and supports undo/redo/clear/history commands.
+- Environment variable support for history file location.
+- Modular code structure (separate calculation, operation, memento, and exception modules).
+- Parameterized and comprehensive tests for all operations and expression parsing.
+- Test coverage enforcement (90%+) using pytest and pytest-cov.
+- Skipped or excluded tests do not affect coverage metrics.
+- Easy extensibility for new operations or features.
 
 ## Example Usage
 

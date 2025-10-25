@@ -1,12 +1,13 @@
 import pandas as pd
 import os
 
+
 undo_stack = []
 
 
 def undo():
     try:
-        df = pd.read_csv(os.getenv("history"))
+        df = pd.read_csv(os.getenv("CALCULATOR_HISTORY_DIR"))
     except:
         df = pd.DataFrame(columns=["equation"])
     history = df["equation"].tolist()
@@ -14,7 +15,7 @@ def undo():
     if len(history) > 0:
         equation = history.pop()
         df = df.iloc[:-1]
-        df.to_csv(os.getenv("history"), index=False)
+        df.to_csv(os.getenv("CALCULATOR_HISTORY_DIR"), index=False)
         undo_stack.append(equation)
         return equation
     else:
@@ -23,7 +24,7 @@ def undo():
 
 def redo():
     try:
-        df = pd.read_csv(os.getenv("history"))
+        df = pd.read_csv(os.getenv("CALCULATOR_HISTORY_DIR"))
     except:
         df = pd.DataFrame(columns=["equation"])
     history = df["equation"].tolist()
@@ -31,7 +32,7 @@ def redo():
     if len(undo_stack) > 0:
         equation = undo_stack.pop()
         df.loc[len(df)] = [equation]
-        df.to_csv(os.getenv("history"), index=False)
+        df.to_csv(os.getenv("CALCULATOR_HISTORY_DIR"), index=False)
         history.append(equation)
         return equation
     else:
@@ -40,7 +41,7 @@ def redo():
 
 def history():
     try:
-        df = pd.read_csv(os.getenv("history"))
+        df = pd.read_csv(os.getenv("CALCULATOR_HISTORY_DIR"))
     except:
         df = pd.DataFrame(columns=["equation"])
     history = df["equation"].tolist()
@@ -57,4 +58,4 @@ def clear():
 
 def clear_history():
     df = pd.DataFrame()
-    df.to_csv(os.getenv("history"), index=False)
+    df.to_csv(os.getenv("CALCULATOR_HISTORY_DIR"), index=False)
